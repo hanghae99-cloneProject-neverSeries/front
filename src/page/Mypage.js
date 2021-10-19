@@ -45,7 +45,7 @@ const Mypage = ()=>{
     )
 }
 const Wrap = styled.div`
-margin:10px auto;
+margin:50px auto;
 width : 1110px;
 height : 1300px; 
 `

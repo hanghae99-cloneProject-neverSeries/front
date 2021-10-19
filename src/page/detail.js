@@ -9,6 +9,7 @@ import Comment from "../detailComponent/Comment";
 const Detail = (props)=>{
     return(
         <div>
+    
         <Wrap>
                <DetailNav/>
             <Contents>
@@ -25,7 +26,7 @@ const Wrap = styled.div`
 display : flex;
 width : 1110px;
 height : 1300px;
-margin : auto;
+margin : 30px auto;
 
 `
 const Add = styled.div`

@@ -9,15 +9,40 @@ import Mypage from "../page/Mypage";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 
+import { Header, Footer } from "../components";
+
+import { MainPage, LoginPage, SignupPage } from "../pages/index";
+
+import { Grid } from "../elements";
+
 function App() {
     return (
         <React.Fragment>
             <ConnectedRouter history={history}>
-                <Switch>
-                    <Route path="/detail" component={Detail}></Route>
-                    <Route path="/content" component={Content}></Route>
-                    <Route path="/mypage" component={Mypage}></Route>
-                </Switch>
+                <Grid bg={"black"}>
+                    <Header />
+                </Grid>
+                <Grid width={"100%"} fd={"column"}>
+                    <Switch>
+                        <Route path="/" exact component={MainPage}></Route>
+                        <Route
+                            path="/login"
+                            exact
+                            component={LoginPage}
+                        ></Route>
+                        <Route
+                            path="/signup"
+                            exact
+                            component={SignupPage}
+                        ></Route>
+                    <Route path="/content" exact component={Content}></Route>
+                    <Route path="/mypage" exact component={Mypage}></Route>
+                    <Route path="/detail"  exact component={Detail}></Route>
+                    </Switch>
+                </Grid>
+                <Grid bg={"#f5f5f5"}>
+                    <Footer />
+                </Grid>
             </ConnectedRouter>
         </React.Fragment>
     );
