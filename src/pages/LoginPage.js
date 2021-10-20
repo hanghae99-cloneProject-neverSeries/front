@@ -65,7 +65,7 @@ const LoginPage = (props) => {
                                 value={pw}
                                 others={"border-style:none;"}
                                 _onChange={(e) => {
-                                    setId(e.target.value);
+                                    setPw(e.target.value);
                                 }}
                             ></Input>
                         </Grid>
