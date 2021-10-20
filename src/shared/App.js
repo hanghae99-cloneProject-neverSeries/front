@@ -25,19 +25,21 @@ function App() {
                 <Grid width={"100%"} fd={"column"}>
                     <Switch>
                         <Route path="/" exact component={MainPage}></Route>
-                        <Route
-                            path="/login"
-                            exact
-                            component={LoginPage}
-                        ></Route>
-                        <Route
-                            path="/signup"
-                            exact
-                            component={SignupPage}
-                        ></Route>
                     <Route path="/content" exact component={Content}></Route>
                     <Route path="/mypage" exact component={Mypage}></Route>
                     <Route path="/detail"  exact component={Detail}></Route>
+                        <Grid bg={"#f5f5f5"} width={"100%"}>
+                            <Route
+                                path="/login"
+                                exact
+                                component={LoginPage}
+                            ></Route>
+                            <Route
+                                path="/signup"
+                                exact
+                                component={SignupPage}
+                            ></Route>
+                        </Grid>
                     </Switch>
                 </Grid>
                 <Grid bg={"#f5f5f5"}>

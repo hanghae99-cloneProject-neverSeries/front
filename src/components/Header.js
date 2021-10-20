@@ -78,18 +78,14 @@ const Header = (props) => {
                 others={"position: sticky; top: 0px; z-index:2;"}
             >
                 <Grid width={"150px"}>
-                    <Button
-                        bgColor={"none"}
-                        others={"background:none;"}
-                        _onClick={() => {
-                            history.push("/");
-                        }}
-                    >
-                        <Image
-                            width={"76px"}
-                            height={"14px"}
-                            src={naverLogo}
-                        ></Image>
+                    <Button bgColor={"none"} others={"background:none;"}>
+                        <a href="https://www.naver.com">
+                            <Image
+                                width={"76px"}
+                                height={"14px"}
+                                src={naverLogo}
+                            ></Image>
+                        </a>
                     </Button>
                 </Grid>
                 <Grid width={"100%"}>

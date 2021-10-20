@@ -49,7 +49,7 @@ const ElInput = styled.input`
     font-size: ${(props) => props.fontSize};
     ${(props) => props.others};
     border-radius: ${(props) => props.bradius};
-    border: 1px solid lightgray;
+    border: ${(props) => props.border};
     box-sizing: border-box;
     padding: 12px;
 `;

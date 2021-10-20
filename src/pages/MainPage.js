@@ -1,8 +1,11 @@
 // * import Basic
 import React from "react";
+import styled from "styled-components";
+
 import { FiberManualRecord } from "@material-ui/icons";
 import { ArrowBackIosRounded } from "@material-ui/icons";
 import { ArrowForwardIosRounded } from "@material-ui/icons";
+
 import novelImage from "../novelImage.png";
 import { history } from "../redux/configStore";
 
@@ -36,71 +39,95 @@ const MainPage = (props) => {
                     >
                         {_novels.map((novel, idx) => {
                             return (
-                                <Grid fd={"column"} margin={"20px 0px"}>
-                                    <Grid margin={"0px 0px 16px 0px"}>
-                                        <Grid
-                                            width={"50px"}
-                                            height={"50px"}
-                                            bg={"#50bef9"}
-                                            margin={"-200px -35px 0px 0px"}
-                                            others={
-                                                "border-radius:30px; border:1px solid #4babdf;"
-                                            }
-                                            fd={"column"}
-                                        >
-                                            <Text
-                                                color={"white"}
-                                                others={
-                                                    "text-align:center;margin-bottom:-3px;"
-                                                }
-                                            >
-                                                25화
-                                            </Text>
-                                            <Text
-                                                color={"white"}
-                                                others={
-                                                    "text-align:center; margin-top:-3px;"
-                                                }
-                                            >
-                                                무료
-                                            </Text>
-                                        </Grid>
-                                        <Image
-                                            src={novelImage}
-                                            width={"150px"}
-                                            height={"225px"}
-                                        ></Image>
-                                    </Grid>
-                                    <Grid
-                                        fd={"column"}
-                                        margin={"0px -10px 0px 0px"}
+                                <Grid margin={"0px"}>
+                                    <ul
+                                        style={{
+                                            listStyleType: "none",
+                                            margin: "0px",
+                                            padding: "0px",
+                                        }}
                                     >
-                                        <Text fontSize={"15px"} bold={"700"}>
-                                            화산귀환 [독점]
-                                        </Text>
-                                        <Text
-                                            fontSize={"13px"}
-                                            color={"darkgray"}
-                                        >
-                                            비가
-                                        </Text>
-                                        <Text fontSize={"13px"}>
-                                            ⭐️⭐️⭐️⭐️⭐️{" "}
-                                            <span
-                                                style={{
-                                                    fontSize: "14px",
-                                                    fontWeight: "700",
-                                                }}
+                                        <li>
+                                            <Grid
+                                                fd={"column"}
+                                                margin={"20px 0px"}
                                             >
-                                                8.7
-                                            </span>
-                                        </Text>
-                                    </Grid>
+                                                <Grid
+                                                    margin={"0px 0px 16px 0px"}
+                                                >
+                                                    <Grid
+                                                        width={"50px"}
+                                                        height={"50px"}
+                                                        bg={"#50bef9"}
+                                                        margin={
+                                                            "-200px -35px 0px 0px"
+                                                        }
+                                                        others={
+                                                            "border-radius:30px; border:1px solid #4babdf;"
+                                                        }
+                                                        fd={"column"}
+                                                    >
+                                                        <Text
+                                                            color={"white"}
+                                                            others={
+                                                                "text-align:center;margin-bottom:-3px;"
+                                                            }
+                                                        >
+                                                            25화
+                                                        </Text>
+                                                        <Text
+                                                            color={"white"}
+                                                            others={
+                                                                "text-align:center; margin-top:-3px;"
+                                                            }
+                                                        >
+                                                            무료
+                                                        </Text>
+                                                    </Grid>
+                                                    <Image
+                                                        src={novelImage}
+                                                        width={"150px"}
+                                                        height={"225px"}
+                                                    ></Image>
+                                                </Grid>
+                                                <Grid
+                                                    fd={"column"}
+                                                    margin={"0px -10px 0px 0px"}
+                                                >
+                                                    <Text
+                                                        fontSize={"15px"}
+                                                        bold={"700"}
+                                                    >
+                                                        화산귀환 [독점]
+                                                    </Text>
+                                                    <Text
+                                                        fontSize={"13px"}
+                                                        color={"darkgray"}
+                                                    >
+                                                        비가
+                                                    </Text>
+                                                    <Text fontSize={"13px"}>
+                                                        ⭐️⭐️⭐️⭐️⭐️{" "}
+                                                        <span
+                                                            style={{
+                                                                fontSize:
+                                                                    "14px",
+                                                                fontWeight:
+                                                                    "700",
+                                                            }}
+                                                        >
+                                                            8.7
+                                                        </span>
+                                                    </Text>
+                                                </Grid>
+                                            </Grid>
+                                        </li>
+                                    </ul>
                                 </Grid>
                             );
                         })}
                     </Grid>
-                    <Grid>
+                    <Grid controller>
                         <ArrowForwardIosRounded
                             style={{
                                 color: "#b9b9ba",
@@ -138,5 +165,26 @@ const MainPage = (props) => {
         </React.Fragment>
     );
 };
+
+const Slides = styled.ul`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2500px;
+    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+
+    li:first-child {
+        margin-left: 100px;
+    }
+
+    li:not(:last-child) {
+        float: left;
+        margin-right: 100px;
+    }
+
+    li {
+        float: left;
+    }
+`;
 
 export default MainPage;
