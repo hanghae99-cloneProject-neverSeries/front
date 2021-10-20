@@ -19,22 +19,10 @@ const  getProductsFB= params => {
     return async function (dispatch, getState, { history }) {
       const products_list = await getProductApi(params);
       console.log(products_list);
-      products_list.then((res)=>{dispatch(getProducts(products_list.data.product))}
-      )
+      dispatch(getProducts(products_list.data.product))
     }
   }
 
-
-// const  getProductsFB= params => {
-//     return  function (dispatch, getState, { history }) {
-// instance.get("/novel/2")
-// .then((res) =>{
-//     console.log("ehla",res.data.product);
-// })
-// .catch((error)=> {
-//     console.log(error);
-// });   }
-//   }
 
 
 // 리듀서

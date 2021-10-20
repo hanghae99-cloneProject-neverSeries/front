@@ -1,11 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch , useSelector } from 'react-redux';
+import * as productActions from "../redux/modules/product"
+
 
 const NovelInfo = (props)=>{
+    const dispatch = useDispatch();
+    React.useEffect((params) => {
+        dispatch(productActions.getProductsFB(params))},[]
+        );
+    
+    // 리덕스 데이터 가지고 오기
+    const  products = useSelector((store) => store.product.detail);
+    console.log("안녕",products)
+
+
     return(
         <Wrap>
             {/* 소설 타이틀 & 작가 정보 */}
-            <Div> <ClockImg/> 서브 남주가 너무 많아![독점] {} </Div>
+            <Div> <ClockImg/>  {products?.title} </Div>
             <Rating> 
                 <StarBox><EmptyStar><Star/></EmptyStar><div style = {{marginLeft :"5px"}}>9.1</div> </StarBox>
                 <InterestUl>
@@ -22,23 +35,7 @@ const NovelInfo = (props)=>{
                 <Li>출판사 <span>로제토{}</span></Li>
                 <Li>12세 이용가</Li>
             </Ul>
-            <Info>
-            시한부 환자, 정은재의 삶은 그렇게 끝이었다. 
-            진심으로 삶에 미련이 없었는데.
-            [너에게 주어진 시간은 일 년! 그 안에 ‘진짜 남주’를 찾아!]
-            “자, 잠깐! 잠깐만! 이게 뭐야! 뭐냐고?!”
-            죽은 줄 알았던 난 낯선 세계에서 다시 눈을 떴다.
-            놀라울 정도로 건강한 몸을 가진 채.
-            [못 찾으면 일 년 후 죽어! 재밌겠지?]
-            그 순간, 나는 보고 말았다.
-            그들 머리 위에 떠 있는 초록색 글자, [호감도 0%]를.
-            [처음 보는 남성의 호감도는 0%로 시작! 물론 예외는 있어!]
-            [호감도 실적이 영 아니다 싶으면 미션이 쏟아질 테니까 각오해!]
-            와. 이거 진짜구나.
-            “안……녕?”
-            일단 살고 보자.
-            너희 중 누가 진짜 남주니.   
-            </Info>
+            <Info>{products?.description}</Info>
             <div>
                 <H4>eBook 가격정보</H4>
                 <HowMuch>

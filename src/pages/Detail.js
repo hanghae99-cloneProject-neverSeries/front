@@ -1,21 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { DetailNav, NovelInfo, Round, Comment } from "../components";
-import { useDispatch , useSelector } from 'react-redux';
-import product, * as productActions from "../redux/modules/product"
 
 
 const Detail = (props) => {
-    const dispatch = useDispatch();
-    React.useEffect((params) => {
-        dispatch(productActions.getProductsFB(params))},[]
-        );
-    
-        // 리덕스 데이터 가지고 오기
-    const  products = useSelector((store) => store.product.detail);
-    // console.log("안녕",products)
-
-
 
     return (
         <div>
