@@ -11,7 +11,7 @@ const Round = (props)=>{
         dispatch(productActions.getProductsFB(params))},[]
         );
     
-        // 리덕스 데이터 가지고 오기
+    // 리덕스 데이터 가지고 오기
     const  products = useSelector((store) => store.product.detail);
     console.log(products)
     console.log("안녕",products?.title)

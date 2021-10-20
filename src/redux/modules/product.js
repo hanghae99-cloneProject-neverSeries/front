@@ -18,7 +18,6 @@ const initialState = {
 const  getProductsFB= params => {
     return async function (dispatch, getState, { history }) {
       const products_list = await getProductApi(params);
-      console.log(products_list);
       dispatch(getProducts(products_list.data.product))
     }
   }

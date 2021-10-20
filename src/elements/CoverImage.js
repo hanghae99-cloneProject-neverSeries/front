@@ -1,16 +1,23 @@
 import React from 'react';
 import styled from "styled-components";
+import { useDispatch , useSelector } from 'react-redux';
+import * as productActions from "../redux/modules/product"
 
 
 const CoverImage = (props)=>{
-    const {src} = props;
-    const style = { src : src }
-return(
-    <Image {...style}></Image>
-)
-}
-CoverImage.defaultProps = {
-    src : "https://comicthumb-phinf.pstatic.net/20210917_299/pocket_1631867055704bVj56_JPEG/____1.jpg?type=m260" }
+    const dispatch = useDispatch();
+    React.useEffect((params) => {
+        dispatch(productActions.getProductsFB(params))},[]
+        );
+    
+    // 리덕스 데이터 가지고 오기
+    const  products = useSelector((store) => store.product.detail);
+
+
+        return(
+    <Image src = {products?.imgURL}></Image>
+        )
+    }
 
 const Image = styled.div`
 overflow: hidden;
