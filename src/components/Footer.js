@@ -49,7 +49,7 @@ const Footer = () => {
                         1588-3820 <span style={{ color: "gray" }}>이메일</span>
                         ccnaver@naver.com
                     </p>
-                    <p>© NAVER WEBTOON Limited</p>
+                    <p style={{ fontWeight: "700" }}>© NAVER WEBTOON Limited</p>
                     <p>
                         네이버 이용약관
                         <span style={{ color: "gray" }}> | </span>책임의 한계와
@@ -58,17 +58,14 @@ const Footer = () => {
                         결제문의<span style={{ color: "gray" }}> | </span>
                         저작권침해신고<span style={{ color: "gray" }}> | </span>
                         결제도용신고<span style={{ color: "gray" }}> | </span>
-                        <span style={{ fontWeight: "700" }}>
-                            {" "}
-                            © NAVER CORP.
-                        </span>
+                        <span style={{ fontWeight: "700" }}>© NAVER CORP.</span>
                     </p>
                 </Text>
             </Grid>
             <Grid width={"710px"} padding={"0px 16px 40px 16px"} fd={"column"}>
                 <Grid padding={"16px"}>
                     <Text color={"black"} fontSize={"1.5rem"} bold={"700"}>
-                        항해99 - 11조 miniproject
+                        항해99 - 4조 clone coding
                     </Text>
                 </Grid>
                 <Grid
