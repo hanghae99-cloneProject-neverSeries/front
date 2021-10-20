@@ -1,6 +1,9 @@
 // * react basic import
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Detail from "../page/detail";
+import Content from "../page/Content";
+import Mypage from "../page/Mypage";
 
 // * to use redux
 import { ConnectedRouter } from "connected-react-router";
@@ -22,6 +25,9 @@ function App() {
                 <Grid width={"100%"} fd={"column"}>
                     <Switch>
                         <Route path="/" exact component={MainPage}></Route>
+                    <Route path="/content" exact component={Content}></Route>
+                    <Route path="/mypage" exact component={Mypage}></Route>
+                    <Route path="/detail"  exact component={Detail}></Route>
                         <Grid bg={"#f5f5f5"} width={"100%"}>
                             <Route
                                 path="/login"
