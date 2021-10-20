@@ -12,8 +12,13 @@ const NovelInfo = (props)=>{
     
     // 리덕스 데이터 가지고 오기
     const  products = useSelector((store) => store.product.detail);
-    console.log("안녕",products)
+    console.log("안녕",products?.bookInfo)
 
+    // bookInfo 잘라서 사용하기 (split 함수 이용)
+    const bookInfoD = products?.bookInfo
+    console.log(bookInfoD)
+    const bookInfoArr = bookInfoD?.split(" ")
+    console.log(bookInfoArr?.[4])
 
     return(
         <Wrap>
@@ -29,11 +34,11 @@ const NovelInfo = (props)=>{
                 </InterestUl>
             </Rating>
             <Ul>
-                <Li><Span>연재중</Span>  </Li>
-                <Li> 로판 </Li>
-                <Li> 글 <span>홍이영{}</span></Li>
-                <Li>출판사 <span>로제토{}</span></Li>
-                <Li>12세 이용가</Li>
+                <Li><Span>{bookInfoArr?.[0]}</Span>  </Li>
+                <Li> {bookInfoArr?.[1]}ㅣ </Li>
+                <Li> 글  <span>{bookInfoArr?.[2]}</span>ㅣ</Li>
+                <Li>출판사   <span>{bookInfoArr?.[3]}</span>ㅣ</Li>
+                <Li>{bookInfoArr?.[4]}</Li>
             </Ul>
             <Info>{products?.description}</Info>
             <div>
