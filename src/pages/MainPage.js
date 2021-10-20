@@ -1,6 +1,5 @@
 // * import Basic
 import React from "react";
-import styled from "styled-components";
 
 import { FiberManualRecord } from "@material-ui/icons";
 import { ArrowBackIosRounded } from "@material-ui/icons";
@@ -165,26 +164,5 @@ const MainPage = (props) => {
         </React.Fragment>
     );
 };
-
-const Slides = styled.ul`
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2500px;
-    transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
-
-    li:first-child {
-        margin-left: 100px;
-    }
-
-    li:not(:last-child) {
-        float: left;
-        margin-right: 100px;
-    }
-
-    li {
-        float: left;
-    }
-`;
 
 export default MainPage;

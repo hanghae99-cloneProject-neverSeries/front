@@ -1,6 +1,7 @@
 // * react basic import
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import axios from "axios";
 
 // * to use redux
 import { ConnectedRouter } from "connected-react-router";
@@ -20,6 +21,20 @@ import {
 import { Grid } from "../elements";
 
 function App() {
+    React.useEffect(() => {
+        axios
+            .post("http://15.164.234.148:4000/login", {
+                userId: "jinsun",
+                pw: "jinsun1234!!",
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <React.Fragment>
             <ConnectedRouter history={history}>
