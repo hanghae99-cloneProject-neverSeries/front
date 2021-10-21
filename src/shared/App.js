@@ -35,7 +35,7 @@ function App() {
                 <Grid bg={"black"}>
                     <Header />
                 </Grid>
-                <Grid width={"100%"} fd={"column"}>
+                <Grid width={"100%"} fd={"column"} >
                     <Switch>
                         <Route path="/" exact component={MainPage}></Route>
                         <Route
@@ -60,7 +60,7 @@ function App() {
                         </Grid>
                     </Switch>
                 </Grid>
-                <Grid bg={"#f5f5f5"}>
+                <Grid bg={"#f5f5f5"} >
                     <Footer />
                 </Grid>
             </ConnectedRouter>

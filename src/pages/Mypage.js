@@ -1,6 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch , useSelector } from 'react-redux';
+import * as mypageAtions from "../redux/modules/mypage"
+
 const Mypage = () => {
+    const dispatch = useDispatch();
+    React.useEffect((params) => {
+        dispatch(mypageAtions.getMypageFB(params))},[]
+        );
+    React.useEffect((params) => {
+        dispatch(mypageAtions.getMyinfoFB(params))},[]
+        );
+    
+
+     // 리덕스 데이터 가지고 오기
+    const  myList = useSelector((store) => store.mypage.myinfo);
+    const myInfo = useSelector((store) => store.mypage.info);
+    console.log(myInfo?.muffin)
+    console.log("안녕", myList)
+
+
     return (
         <div>
             <Wrap>
@@ -10,7 +29,7 @@ const Mypage = () => {
                         <MyInfo1>
                             <Muffin />
                             <Text>
-                                보유 중인 머핀 <Count>13</Count>
+                                보유 중인 머핀 <Count>{myInfo?.muffin}</Count>
                                 <Count2>개</Count2>
                             </Text>
                             <DetailBt>상세보기</DetailBt>
@@ -40,7 +59,25 @@ const Mypage = () => {
                     <Category>
                         <CategoryDetail>장르소설</CategoryDetail>
                     </Category>
-                    <div>여기에 내서재 정보 뿌려줄 거</div>
+
+
+
+                    {myList.map((list,index)=>(
+                                            <MyWraps>
+                    <img src={myList?.[index].imgURL} width="67" height="101" alt={myList?.[index].description}onerror="this.src='https://ssl.pstatic.net/static/nstore/thumb/noimg_book_67x101.gif'"/>
+                        <BookInfo>
+                        <p style={{margin : "0 0 10px 0",fontWeight : "bold"}}>{myList?.[index].title}</p>
+                        <P>대여기한 항해가 끝날때까지</P>
+                        <P>지원 기기 PC(Window), 모바일{}</P>
+                        <ViewBt>보기</ViewBt>
+                        </BookInfo>
+                    </MyWraps>
+
+                    ))}
+
+
+
+
                 </div>
                 <Notion>
                     <div>
@@ -181,8 +218,7 @@ const MyMenu = styled.div`
 `;
 const MyBox = styled.div`
     height: auto;
-    background: url(https://ssl.pstatic.net/static/nstore/series/sp_tit_new_v2.png)
-        no-repeat 0 -807px;
+    background: url(https://ssl.pstatic.net/static/nstore/series/sp_tit_new_v2.png) no-repeat 0 -807px;
     color: transparent;
     margin-top: 49px;
 `;
@@ -223,5 +259,25 @@ const Notion = styled.div`
     background-color: #fafafa;
     margin-top: 56px;
     font-size: 12px;
-`;
+`
+const MyWraps = styled.div`
+display : flex;
+width : 480px;
+height : 148px;
+margin-top : 30px;
+`
+const P =styled.p`
+margin : 0 0 5px 0;
+font-size : 12px;
+color : #838181;
+`
+const BookInfo = styled.div`
+margin-left : 20px;
+`
+const ViewBt = styled.button`
+background-color : white;
+width : 47px;
+height : 25px;
+border : 1.5px solid #e3e3e3;
+`
 export default Mypage;

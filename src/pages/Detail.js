@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { DetailNav, NovelInfo, Round, Comment } from "../components";
 
+
 const Detail = (props) => {
+
     return (
         <div>
             <Wrap>

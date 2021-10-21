@@ -1,19 +1,27 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { useDispatch , useSelector } from 'react-redux';
+import * as productActions from "../redux/modules/product"
+
 
 const Round = (props)=>{
+    const dispatch = useDispatch();
+    React.useEffect((params) => {
+        dispatch(productActions.getProductsFB(params))},[]
+        );
+    
+    // 리덕스 데이터 가지고 오기
+    const  products = useSelector((store) => store.product.detail);
+    console.log(products)
+    console.log("안녕",products?.title)
 
     //회차 리스트 뿌려 줄 것 
-const Round = ["1화","2화","3화","4화","5화","6화","7화","8화","9화","10화","11화","12화","13화","14화","15화","16화","17화","18화","19화","20화","21화","22화","23화","24화","25화","26화","27화","28화","29화","30화"];
-    // 타이틀 리스트 뿌려 줄 것
-const [tilte,setTtitle]=React.useState("서브남주가 너무 많아![독점]");
-    // 서브타이틀 리스트 뿌려 줄 것 
-const [subtitle,setSubtitle]=React.useState(" 누가 남주니?");
-
+    const Round = ["1화","2화","3화","4화","5화","6화","7화","8화","9화","10화","11화","12화","13화","14화","15화","16화","17화","18화","19화","20화","21화","22화","23화","24화","25화","26화","27화","28화","29화","30화"];
+   
     // 보기를 누르면 페이지 이동
-const hisotry = useHistory();
-const goContent = ()=>{
+    const hisotry = useHistory();
+    const goContent = ()=>{
     hisotry.push("/content")
 }
 
@@ -27,15 +35,15 @@ const goContent = ()=>{
             <RoundBox>
                 <Table border="1" summary ="소설 회차 데이터 리스트">
                     <tbody>
-                    {Round.map((round,indeex)=>(
+                    {Round.map((round,index)=>(
                             <Tr>
                             <Th></Th>
                             <Td>
                                  <div>
-                                    <span> {tilte}
-                                       <strong> {round}. {subtitle} (1)</strong>
+                                    <span> {products?.title}
+                                       <strong> {round}</strong>
                                     </span>
-                                    <Date>(2021.10.10)</Date>
+                                    <Date>(2021.10.10){}</Date>
                                     <NEW>New</NEW>
                                 </div>
                              </Td>
