@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import { useDispatch , useSelector } from 'react-redux';
+import * as mypageAtions from "../redux/modules/mypage";
+
 
 const Muffin = (props)=>{
     const isLogin = useSelector((store) => store.user.is_login);   
@@ -13,6 +15,19 @@ const Muffin = (props)=>{
         history.push("/mypage")
     }
 
+    const dispatch = useDispatch();
+    React.useEffect((params) => {
+        dispatch(mypageAtions.getMyinfoFB(params))},[]
+        );
+    
+
+     // 리덕스 데이터 가지고 오기
+    const myInfo = useSelector((store) => store.mypage.info);
+    console.log(myInfo?.muffin)
+
+     
+
+
     return(
         isLogin?(
             <LoginMuffin>
@@ -23,7 +38,7 @@ const Muffin = (props)=>{
                 <Info>
                 <SmallBox >
                 <div style={{display : "flex"}}>
-                <MuffinImage></MuffinImage><MyIfo>13{}개</MyIfo>
+                <MuffinImage></MuffinImage><MyIfo>{myInfo?.muffin}개</MyIfo>
                 </div>
                 </SmallBox>
                 <LoginButtion  onClick={goMypage}>충전하기</LoginButtion>

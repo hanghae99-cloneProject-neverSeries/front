@@ -17,8 +17,14 @@ const initialState = {
 // 도서 상세 정보 미들웨어
 const  getProductsFB= params => {
     return async function (dispatch, getState, { history }) {
-      const products_list = await getProductApi(params);
-      dispatch(getProducts(products_list.data.product))
+      await getProductApi(params)
+      .then((res)=>{
+        console.log(res.data.product)
+        dispatch(getProducts(res.data.product))
+      })
+      .catch((err)=>{
+          console.log(err.response.data.msg)
+      })
     }
   }
 
