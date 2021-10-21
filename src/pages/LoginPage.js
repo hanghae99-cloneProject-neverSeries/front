@@ -1,13 +1,31 @@
 // * import Basic
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useSelector, useDispatch } from "react-redux";
 import Naver_bigLogo from "../Naver_bigLogo.png";
 
 // * import Components
 import { Text, Grid, Image, Input, Button } from "../elements/index";
 
-const LoginPage = (props) => {
+const LoginPage = ({ history }) => {
+    const isLogin = useSelector((store) => store.user.is_login);
+    const dispatch = useDispatch();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+
+    useEffect(() => {
+        if (isLogin) history.push("/");
+    });
+
+    const login = (e) => {
+        if (id === "" || pw === "") {
+            window.alert("아이디, 비밀번호를 모두 입력해주세요!");
+            return;
+        }
+
+        dispatch(userActions.postLogIn(id, pw));
+    };
+
     return (
         <React.Fragment>
             <Grid width={"600px"} fd={"column"} others={"min-height:60vh;"}>
@@ -38,7 +56,9 @@ const LoginPage = (props) => {
                             <Input
                                 placeholder={""}
                                 value={id}
-                                others={"border-style:none;"}
+                                others={
+                                    "border-style:none; &:focus{outline:none;}"
+                                }
                                 _onChange={(e) => {
                                     setId(e.target.value);
                                 }}
@@ -57,13 +77,16 @@ const LoginPage = (props) => {
                             margin={"0px 0px 35px 0px"}
                             placeholder={""}
                             others={
-                                "border: 1px solid lightgray; padding-right:10px"
+                                "border: 1px solid lightgray; padding-right:10px;"
                             }
                         >
                             <Input
+                                type={"password"}
                                 placeholder={""}
                                 value={pw}
-                                others={"border-style:none;"}
+                                others={
+                                    "border-style:none; &:focus{outline:none;}"
+                                }
                                 _onChange={(e) => {
                                     setPw(e.target.value);
                                 }}
@@ -71,6 +94,9 @@ const LoginPage = (props) => {
                         </Grid>
                         <Grid margin={"0px 0px 60px 0px"}>
                             <Button
+                                _onClick={() => {
+                                    login();
+                                }}
                                 width={"472px"}
                                 height={"50px"}
                                 bgColor={"#03c75a"}

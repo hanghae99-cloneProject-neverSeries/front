@@ -46,9 +46,9 @@ const Button = (props) => {
                     <AccountCircle
                         style={{
                             marginRight: "10px",
-                            color: "#6dddd0",
+                            color: "#fff",
                             fontSize: "27px",
-                            background: "#fff",
+                            background: "none",
                             borderRadius: "50px",
                         }}
                     />
@@ -64,9 +64,9 @@ const Button = (props) => {
                     {text ? text : children}
                     <ExitToAppSharp
                         style={{
-                            color: "#b9b9b9",
+                            color: "#fff",
                             fontSize: "27px",
-                            background: "#fff",
+                            background: "none",
                             borderRadius: "50px",
                         }}
                     />

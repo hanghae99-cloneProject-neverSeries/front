@@ -6,6 +6,8 @@ import axios from "axios";
 // * to use redux
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { Header, Footer } from "../components";
 
@@ -21,18 +23,9 @@ import {
 import { Grid } from "../elements";
 
 function App() {
+    const dispatch = useDispatch();
     React.useEffect(() => {
-        axios
-            .post("http://15.164.234.148:4000/login", {
-                userId: "jinsun",
-                pw: "jinsun1234!!",
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        dispatch(userActions.postLogInCheck());
     }, []);
 
     return (
