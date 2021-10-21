@@ -82,13 +82,14 @@ const Mypage = () => {
     );
 };
 const Wrap = styled.div`
-    margin: 50px auto;
-    width: 1110px;
-    height: 1300px;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin: 50px 0px 100px 0px;
 `;
 const Mine = styled.div`
     display: flex;
-    width: 1002px;
+    width: 1000px;
     margin-top: 13px;
 `;
 const MyInfo1 = styled.div`

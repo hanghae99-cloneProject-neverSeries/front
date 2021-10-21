@@ -1,22 +1,55 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import {useHistory} from "react-router-dom"
 
 const Muffin = (props)=>{
-    // is_login이 true면 머핀 정보를 넘겨줘야해서 머핀 리턴이 두가지 타입일 예정
-    
+    const isLogin = useSelector((store) => store.user.is_login);   
+    const history = useHistory();
+    const goLogin = ()=>{
+        history.push("/login")
+    }
+    const goMypage = ()=>{
+        history.push("/mypage")
+    }
+
     return(
-        <Wrap>
+        isLogin?(
+            <LoginMuffin>
+            <MuffinTitle>
+                보유 중인 머핀
+            </MuffinTitle>
+            <MufinInfo style={{borderBottom : "solid 1px #dfdfdf"}}>
+                <Info>
+                <SmallBox >
+                <div style={{display : "flex"}}>
+                <MuffinImage></MuffinImage><MyIfo>13{}개</MyIfo>
+                </div>
+                </SmallBox>
+                <LoginButtion  onClick={goMypage}>충전하기</LoginButtion>
+                <div style={{marginTop : "13px"}}>
+                <AddImage></AddImage>
+                <Text><stron>최대 100개</stron>보너스 쿠키 받기</Text>
+                </div>
+                </Info>
+            </MufinInfo>
+
+            </LoginMuffin>
+             ):(
+            <Wrap>
             <MuffinTitle>
                 보유 중인 머핀
             </MuffinTitle>
             <MufinInfo>
                 <Info>
                 머핀 수를 확인해주세요.
-                <LoginButtion>로그인</LoginButtion>
+                <LoginButtion onClick={goLogin}>로그인</LoginButtion>
                 </Info>
             </MufinInfo>
-        </Wrap>
-    )
+            </Wrap>
+               )
+            
+        )
 }
 const Wrap = styled.div`
 width : 173px;
@@ -55,6 +88,44 @@ font-size : 14px;
 color : #fff;
 margin : 12px auto 10px;
 font-weight: 600;
+cursor : pointer;
 `
 
+const LoginMuffin = styled.div`
+width : 173px;
+height : 175px;
+border : solid 1px #dfdfdf;
+text-align : center;
+border-radius : 2px;
+`
+const MyIfo = styled.p`
+font-size : 16px;
+font-weight : bold;
+margin :0;
+`
+const MuffinImage = styled.span`
+display : inline-block;
+width : 14px;
+height : 14px;
+background: url(https://ssl.pstatic.net/static/nstore/series/img/sp_home_divide_v6.png) no-repeat -240px -50px;
+background-size : 400px 300px;
+margin :  2px 2px 0 0;
+color : transparents;
+`
+const SmallBox = styled.div`
+width : 60px;
+text-align : center;
+margin : auto
+`
+const AddImage = styled.span`
+width: 90px;
+height: 20px;
+display: inline-block;
+background: url(https://ssl.pstatic.net/static/nstore/series/img/sp_home_divide_v6.png) no-repeat 0 -265px;
+background-size: 400px 300px;
+content : ''
+`
+const Text =styled.p`
+margin :0;
+` 
 export default Muffin;
