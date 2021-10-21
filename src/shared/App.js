@@ -18,6 +18,7 @@ import {
     Detail,
     Content,
     Mypage,
+    Test,
 } from "../pages/index";
 
 import { Grid } from "../elements";
@@ -44,6 +45,7 @@ function App() {
                         ></Route>
                         <Route path="/mypage" exact component={Mypage}></Route>
                         <Route path="/detail" exact component={Detail}></Route>
+                        <Route path="/test" exact component={Test}></Route>
                         <Grid bg={"#f5f5f5"} width={"100%"}>
                             <Route
                                 path="/login"

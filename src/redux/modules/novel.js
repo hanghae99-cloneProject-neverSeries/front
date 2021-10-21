@@ -20,6 +20,7 @@ const getNovel = () => {
             .get("/")
             .then((res) => {
                 dispatch(setNovel(res.data));
+                // console.log(res.data);
             })
             .catch((err) => {
                 console.log(err);
