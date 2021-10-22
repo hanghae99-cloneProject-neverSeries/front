@@ -12,21 +12,18 @@ const NovelInfo = (productId) => {
   // );
 
   // 리덕스 데이터 가지고 오기
-  const products = useSelector((store) => store.product.detail);
   const novel_detail = useSelector((state) => state.product.detail);
 
   console.log(novel_detail);
   const bookInfoSplit = novel_detail?.product?.bookInfo?.split(' ');
   const description = novel_detail?.product?.description;
   const myMuffin = novel_detail?.myMuffin;
-  console.log(bookInfoSplit)
-  console.log("안녕", products?.bookInfo)
 
 
   return (
     <Wrap>
       {/* 소설 타이틀 & 작가 정보 */}
-      <Div> <ClockImg />  {products?.title} </Div>
+      <Div> <ClockImg />  {novel_detail?.title} </Div>
       <Rating>
         <StarBox><EmptyStar><Star /></EmptyStar><div style={{ marginLeft: "5px" }}>9.1</div> </StarBox>
         <InterestUl>
