@@ -1,57 +1,60 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as productActions from "../redux/modules/product"
 
 
-const NovelInfo = (props)=>{
-    const dispatch = useDispatch();
-    React.useEffect((params) => {
-        dispatch(productActions.getProductsFB(params))},[]
-        );
-    
-    // 리덕스 데이터 가지고 오기
-    const  products = useSelector((store) => store.product.detail);
-    console.log("안녕",products?.bookInfo)
+const NovelInfo = (productId) => {
+  // const dispatch = useDispatch();
+  // React.useEffect(() => {
+  //   dispatch(productActions.getProductsFB(productId))
+  // }, []
+  // );
 
-    // bookInfo 잘라서 사용하기 (split 함수 이용)
-    const bookInfoD = products?.bookInfo
-    console.log(bookInfoD)
-    const bookInfoArr = bookInfoD?.split(" ")
-    console.log(bookInfoArr?.[4])
+  // 리덕스 데이터 가지고 오기
+  const products = useSelector((store) => store.product.detail);
+  const novel_detail = useSelector((state) => state.product.detail);
 
-    return(
-        <Wrap>
-            {/* 소설 타이틀 & 작가 정보 */}
-            <Div> <ClockImg/>  {products?.title} </Div>
-            <Rating> 
-                <StarBox><EmptyStar><Star/></EmptyStar><div style = {{marginLeft :"5px"}}>9.1</div> </StarBox>
-                <InterestUl>
-                    <Interest>관심</Interest>
-                    <Interest>하트</Interest>
-                    <Interest>댓글</Interest>
-                    <Interest>공유</Interest>
-                </InterestUl>
-            </Rating>
-            <Ul>
-                <Li><Span>{bookInfoArr?.[0]}</Span>  </Li>
-                <Li> {bookInfoArr?.[1]}ㅣ </Li>
-                <Li> 글  <span>{bookInfoArr?.[2]}</span>ㅣ</Li>
-                <Li>출판사   <span>{bookInfoArr?.[3]}</span>ㅣ</Li>
-                <Li>{bookInfoArr?.[4]}</Li>
-            </Ul>
-            <Info>{products?.description}</Info>
-            <div>
-                <H4>eBook 가격정보</H4>
-                <HowMuch>
-                <Mine>소장</Mine>
-                <Muffin> 머핀 <Span>1{}</Span> 개 </Muffin>
-                <Mine2> 소장 </Mine2>
-                </HowMuch>
-            </div>
+  console.log(novel_detail);
+  const bookInfoSplit = novel_detail?.product?.bookInfo?.split(' ');
+  const description = novel_detail?.product?.description;
+  const myMuffin = novel_detail?.myMuffin;
+  console.log(bookInfoSplit)
+  console.log("안녕", products?.bookInfo)
 
-        </Wrap>
-    )
+
+  return (
+    <Wrap>
+      {/* 소설 타이틀 & 작가 정보 */}
+      <Div> <ClockImg />  {products?.title} </Div>
+      <Rating>
+        <StarBox><EmptyStar><Star /></EmptyStar><div style={{ marginLeft: "5px" }}>9.1</div> </StarBox>
+        <InterestUl>
+          <Interest>관심</Interest>
+          <Interest>하트</Interest>
+          <Interest>댓글</Interest>
+          <Interest>공유</Interest>
+        </InterestUl>
+      </Rating>
+      <Ul>
+        <Li><Span>{bookInfoSplit?.[0]}</Span>  </Li>
+        <Li> {bookInfoSplit?.[1]}ㅣ </Li>
+        <Li> 글  <span>{bookInfoSplit?.[2]}</span>ㅣ</Li>
+        <Li>출판사   <span>{bookInfoSplit?.[3]}</span>ㅣ</Li>
+        <Li>{bookInfoSplit?.[4]}</Li>
+      </Ul>
+      <Info>{description}</Info>
+      <div>
+        <H4>eBook 가격정보</H4>
+        <HowMuch>
+          <Mine>소장</Mine>
+          <Muffin> 머핀 <Span>{myMuffin}</Span> 개 </Muffin>
+          <Mine2> 소장 </Mine2>
+        </HowMuch>
+      </div>
+
+    </Wrap>
+  )
 }
 const Wrap = styled.div`
 width : 784px;
@@ -110,7 +113,7 @@ width : 30px;
 height : 30px;
 margin-right: 8px; 
 `
-const Div=styled.div`
+const Div = styled.div`
 display : flex;
 font-size : 28px;
 font-weight: normal;

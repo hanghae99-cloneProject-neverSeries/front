@@ -1,70 +1,62 @@
 import React from "react";
 import styled from "styled-components";
-import {useHistory} from "react-router-dom";
-import { useDispatch , useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import * as mypageAtions from "../redux/modules/mypage";
 
 
-const Muffin = (props)=>{
-    const isLogin = useSelector((store) => store.user.is_login);   
-    const history = useHistory();
-    const goLogin = ()=>{
-        history.push("/login")
-    }
-    const goMypage = ()=>{
-        history.push("/mypage")
-    }
+const Muffin = (props) => {
+  const isLogin = useSelector((store) => store.user.is_login);
+  const novel_detail = useSelector((state) => state.product.detail);
 
-    const dispatch = useDispatch();
-    React.useEffect((params) => {
-        dispatch(mypageAtions.getMyinfoFB(params))},[]
-        );
-    
+  const history = useHistory();
 
-     // 리덕스 데이터 가지고 오기
-    const myInfo = useSelector((store) => store.mypage.info);
-    console.log(myInfo?.muffin)
+  const goLogin = () => {
+    history.push("/login")
+  }
+  const goMypage = () => {
+    history.push("/mypage")
+  }
 
-     
+  const myMuffin = novel_detail?.myMuffin;
 
+  return (
+    isLogin ? (
+      <LoginMuffin>
+        <MuffinTitle>
+          보유 중인 머핀
+        </MuffinTitle>
+        <MufinInfo style={{ borderBottom: "solid 1px #dfdfdf" }}>
+          <Info>
+            <SmallBox >
+              <div style={{ display: "flex" }}>
+                <MuffinImage></MuffinImage><MyIfo>{myMuffin}개</MyIfo>
+              </div>
+            </SmallBox>
+            <LoginButtion onClick={goMypage}>충전하기</LoginButtion>
+            <div style={{ marginTop: "13px" }}>
+              <AddImage></AddImage>
+              <Text><stron>최대 100개</stron>보너스 쿠키 받기</Text>
+            </div>
+          </Info>
+        </MufinInfo>
 
-    return(
-        isLogin?(
-            <LoginMuffin>
-            <MuffinTitle>
-                보유 중인 머핀
-            </MuffinTitle>
-            <MufinInfo style={{borderBottom : "solid 1px #dfdfdf"}}>
-                <Info>
-                <SmallBox >
-                <div style={{display : "flex"}}>
-                <MuffinImage></MuffinImage><MyIfo>{myInfo?.muffin}개</MyIfo>
-                </div>
-                </SmallBox>
-                <LoginButtion  onClick={goMypage}>충전하기</LoginButtion>
-                <div style={{marginTop : "13px"}}>
-                <AddImage></AddImage>
-                <Text><stron>최대 100개</stron>보너스 쿠키 받기</Text>
-                </div>
-                </Info>
-            </MufinInfo>
+      </LoginMuffin>
+    ) : (
+      <Wrap>
+        <MuffinTitle>
+          보유 중인 머핀
+        </MuffinTitle>
+        <MufinInfo>
+          <Info>
+            머핀 수를 확인해주세요.
+            <LoginButtion onClick={goLogin}>로그인</LoginButtion>
+          </Info>
+        </MufinInfo>
+      </Wrap>
+    )
 
-            </LoginMuffin>
-             ):(
-            <Wrap>
-            <MuffinTitle>
-                보유 중인 머핀
-            </MuffinTitle>
-            <MufinInfo>
-                <Info>
-                머핀 수를 확인해주세요.
-                <LoginButtion onClick={goLogin}>로그인</LoginButtion>
-                </Info>
-            </MufinInfo>
-            </Wrap>
-               )
-            
-        )
+  )
 }
 const Wrap = styled.div`
 width : 173px;
@@ -140,7 +132,7 @@ background: url(https://ssl.pstatic.net/static/nstore/series/img/sp_home_divide_
 background-size: 400px 300px;
 content : ''
 `
-const Text =styled.p`
+const Text = styled.p`
 margin :0;
-` 
+`
 export default Muffin;
