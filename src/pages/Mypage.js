@@ -1,25 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as mypageAtions } from "../redux/modules/mypage";
+import { actionCreators as mypageActions } from "../redux/modules/mypage";
+import { history } from "../redux/configStore";
 
 const Mypage = () => {
   const dispatch = useDispatch();
-  React.useEffect((params) => {
-    dispatch(mypageAtions.getMypageFB(params))
-  }, []
-  );
-  React.useEffect((params) => {
-    dispatch(mypageAtions.getMyinfoFB(params))
-  }, []
-  );
-
 
   // 리덕스 데이터 가지고 오기
-  const myList = useSelector((store) => store.mypage.myinfo);
-  const myInfo = useSelector((store) => store.mypage.info);
-  console.log(myInfo?.muffin)
-  console.log("안녕", myList)
+  const myList = useSelector((myinfo) => myinfo.mypage.myinfo);
+  const myInfo = useSelector((info) => info.mypage.info);
+
+  React.useEffect(() => {
+    dispatch(mypageActions.getMypageFB())
+  }, []
+  );
+
+  React.useEffect(() => {
+    dispatch(mypageActions.getMyinfoFB())
+  }, [],
+  );
 
 
   return (
@@ -62,23 +62,17 @@ const Mypage = () => {
             <CategoryDetail>장르소설</CategoryDetail>
           </Category>
 
-
-
-          {myList.map((list, index) => (
-            <MyWraps>
-              <img src={myList?.[index].imgURL} width="67" height="101" alt={myList?.[index].description} onerror="this.src='https://ssl.pstatic.net/static/nstore/thumb/noimg_book_67x101.gif'" />
+          {myList.map((value, index) => (
+            <MyWraps onClick={() => { history.push(`/detail/${value.id}`); }}>
+              <img src={value.imgURL} width="67" height="101" alt={value.description} onerror="this.src='https://ssl.pstatic.net/static/nstore/thumb/noimg_book_67x101.gif'" />
               <BookInfo>
-                <p style={{ margin: "0 0 10px 0", fontWeight: "bold" }}>{myList?.[index].title}</p>
+                <p style={{ margin: "0 0 10px 0", fontWeight: "bold" }}>{value.title}</p>
                 <P>대여기한 항해가 끝날때까지</P>
                 <P>지원 기기 PC(Window), 모바일{ }</P>
                 <ViewBt>보기</ViewBt>
               </BookInfo>
             </MyWraps>
-
           ))}
-
-
-
 
         </div>
         <Notion>

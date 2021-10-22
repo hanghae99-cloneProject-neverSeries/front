@@ -1,31 +1,58 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from 'react-redux';
-import * as productActions from "../redux/modules/product"
+import { useSelector } from 'react-redux';
 
 
-const NovelInfo = (productId) => {
-  // const dispatch = useDispatch();
-  // React.useEffect(() => {
-  //   dispatch(productActions.getProductsFB(productId))
-  // }, []
-  // );
-
+const NovelInfo = () => {
   // 리덕스 데이터 가지고 오기
   const novel_detail = useSelector((state) => state.product.detail);
 
-  console.log(novel_detail);
+  const title = novel_detail?.product?.title;
   const bookInfoSplit = novel_detail?.product?.bookInfo?.split(' ');
   const description = novel_detail?.product?.description;
+  const star = novel_detail?.product?.star;
+
   const myMuffin = novel_detail?.myMuffin;
 
 
   return (
     <Wrap>
       {/* 소설 타이틀 & 작가 정보 */}
-      <Div> <ClockImg />  {novel_detail?.title} </Div>
+      <Div> <ClockImg />  {title} </Div>
       <Rating>
-        <StarBox><EmptyStar><Star /></EmptyStar><div style={{ marginLeft: "5px" }}>9.1</div> </StarBox>
+        <StarBox>{Number(
+          star
+        ) < 3 && "⭐️"}
+          {Number(
+            star
+          ) >= 3 &&
+            Number(
+              star
+            ) < 5 &&
+            "⭐️⭐️"}
+          {Number(
+            star
+          ) >= 5 &&
+            Number(
+              star
+            ) < 7 &&
+            "⭐️⭐️⭐️"}
+          {Number(
+            star
+          ) >= 7 &&
+            Number(
+              star
+            ) < 9 &&
+            "⭐️⭐️⭐️⭐️"}
+          {Number(
+            star
+          ) >= 9 &&
+            Number(
+              star
+            ) < 11 &&
+            "⭐️⭐️⭐️⭐️⭐️"}
+          <div style={{ marginLeft: "5px" }}>{star}</div>
+        </StarBox>
         <InterestUl>
           <Interest>관심</Interest>
           <Interest>하트</Interest>
