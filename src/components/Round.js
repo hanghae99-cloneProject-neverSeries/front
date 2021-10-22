@@ -10,6 +10,7 @@ const Round = (props) => {
 
   // 리덕스 데이터 가지고 오기
   const novel_detail = useSelector((state) => state.product.detail);
+  const isLogin = useSelector((store) => store.user.is_login);
 
   const productId = novel_detail?.product?.id
   const title = novel_detail?.product?.title
@@ -27,9 +28,13 @@ const Round = (props) => {
   }
 
   const goBuy = (productId, round) => {
-    console.log('productId', productId)
-    console.log('round', round)
-    dispatch(productActions.buyProductFB(productId, round));
+    if (!isLogin) {
+      alert('로그인이 필요합니다')
+      hisotry.push("/login")
+    }
+    else {
+      dispatch(productActions.buyProductFB(productId, round));
+    }
   }
 
   return (

@@ -5,18 +5,15 @@ import { actionCreators as productActions } from '../redux/modules/product';
 
 
 const CoverImage = (props) => {
-  const dispatch = useDispatch();
-  React.useEffect((params) => {
-    dispatch(productActions.getProductsFB(params))
-  }, []
-  );
 
   // 리덕스 데이터 가지고 오기
-  const products = useSelector((store) => store.product.detail);
+  const novel_detail = useSelector((state) => state.product.detail);
 
+  console.log(novel_detail);
+  const imgUrl = novel_detail?.product?.imgURL;
 
   return (
-    <Image src={products?.imgURL}></Image>
+    <Image src={imgUrl}></Image>
   )
 }
 
