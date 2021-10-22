@@ -38,6 +38,7 @@ const Round = (props) => {
         <Grid
             fd={"column"}
             ai={"start"}
+            width={"782px"}
             margin={"30px 0px 0px 0px"}
             others={"max-width:782px;"}
         >
@@ -47,14 +48,14 @@ const Round = (props) => {
                 </Text>
             </Grid>
             <Grid
-                width={"100%"}
+                width={"782px"}
                 fd={"column"}
                 bg={"#f8f8f8"}
                 height={"100%"}
                 others={"border:1px solid lightgray; border-radius: 10px"}
             >
                 <Grid
-                    width={"100%"}
+                    width={"782px"}
                     others={"border-bottom: 1px solid lightgray"}
                 >
                     <Grid padding={"5px 16px"} width={"100%"} jc={"start"}>
@@ -81,7 +82,7 @@ const Round = (props) => {
                     <Grid
                         padding={"5px 16px"}
                         jc={"space-between"}
-                        width={"96%"}
+                        width={"750px"}
                         others={"border-bottom: 1px solid lightgray; "}
                         height={"35px"}
                         bg={"#fff"}

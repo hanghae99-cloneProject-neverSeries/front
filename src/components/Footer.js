@@ -79,7 +79,7 @@ const Footer = () => {
                         <Text>
                             https://github.com/hanghae99-cloneProject-neverSeries/backend.git
                             <br />
-                            윤진선 정혜원
+                            윤진선 김영우
                         </Text>
                     </Grid>
                     <Grid ai={"start"}>
