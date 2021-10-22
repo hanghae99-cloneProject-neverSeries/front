@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as productActions } from '../redux/modules/product';
-
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as productActions } from "../redux/modules/product";
 
 const CoverImage = (props) => {
 
@@ -18,12 +17,11 @@ const CoverImage = (props) => {
 }
 
 const Image = styled.div`
-overflow: hidden;
-background-image:url("${(props) => props.src}");
-background-size: cover;
-width : 173px;
-height : 260px;
-
-`
+    overflow: hidden;
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    width: 173px;
+    height: 260px;
+`;
 
 export default CoverImage;
