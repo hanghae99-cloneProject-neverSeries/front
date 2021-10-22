@@ -7,6 +7,7 @@
 🎉사이트 주소: http://sunnieee.shop.s3-website.ap-northeast-2.amazonaws.com/
 
 📺데모 영상
+https://www.youtube.com/watch?v=QgBHUJjG3VM
 
 🎯 개발 목표
 
