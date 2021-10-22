@@ -1,78 +1,72 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { useDispatch , useSelector } from 'react-redux';
-import * as productActions from "../redux/modules/product"
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as productActions } from "../redux/modules/product";
 
 
-const Round = (props)=>{
-    const dispatch = useDispatch();
-    React.useEffect((params) => {
-        dispatch(productActions.getProductsFB(params))},[]
-        );
-    
-    // 리덕스 데이터 가지고 오기
-    const  products = useSelector((store) => store.product.detail);
-    console.log(products)
-    console.log("안녕",products?.title)
+const Round = (props) => {
 
-    //회차 리스트 뿌려 줄 것 
-    const Round = ["1화","2화","3화","4화","5화","6화","7화","8화","9화","10화","11화","12화","13화","14화","15화","16화","17화","18화","19화","20화","21화","22화","23화","24화","25화","26화","27화","28화","29화","30화"];
-   
-    // 보기를 누르면 페이지 이동
-    const hisotry = useHistory();
-    const goContent = ()=>{
+  // 리덕스 데이터 가지고 오기
+  const novel_detail = useSelector((state) => state.product.detail);
+
+  //회차 리스트 뿌려 줄 것 
+  const Round = ["1화", "2화", "3화", "4화", "5화", "6화", "7화", "8화", "9화", "10화", "11화", "12화", "13화", "14화", "15화", "16화", "17화", "18화", "19화", "20화", "21화", "22화", "23화", "24화", "25화", "26화", "27화", "28화", "29화", "30화"];
+
+  // 보기를 누르면 페이지 이동
+  const hisotry = useHistory();
+  const goContent = () => {
     hisotry.push("/content")
-}
+  }
 
-    return(
-        <div>
-            <RoundInfo> 총 106{}화</RoundInfo>
-            <RoundHeader>
-                <Button>최신순</Button>
-                <Button>1화부터</Button>
-            </RoundHeader>
-            <RoundBox>
-                <Table border="1" summary ="소설 회차 데이터 리스트">
-                    <tbody>
-                    {Round.map((round,index)=>(
-                            <Tr>
-                            <Th></Th>
-                            <Td>
-                                 <div>
-                                    <span> {products?.title}
-                                       <strong> {round}</strong>
-                                    </span>
-                                    <Date>(2021.10.10){}</Date>
-                                    <NEW>New</NEW>
-                                </div>
-                             </Td>
-                             <Td>
-                                 <div>
-                                     <Prevw>미리보기</Prevw>
-                                 </div>
-                             </Td>
-                             <ButtonTd>
-                                 <ViewButton onClick={goContent}>보기</ViewButton>
-                             </ButtonTd>
-                            </Tr>
-                    ))}
+  return (
+    <div>
+      <RoundInfo> 총 106{ }화</RoundInfo>
+      <RoundHeader>
+        <Button>최신순</Button>
+        <Button>1화부터</Button>
+      </RoundHeader>
+      <RoundBox>
+        <Table border="1" summary="소설 회차 데이터 리스트">
+          <tbody>
+            {Round.map((round, index) => (
+              <Tr>
+                <Th></Th>
+                <Td>
+                  <div>
+                    <span> {novel_detail?.title}
+                      <strong> {round}</strong>
+                    </span>
+                    <Date>(2021.10.10){ }</Date>
+                    <NEW>New</NEW>
+                  </div>
+                </Td>
+                <Td>
+                  <div>
+                    <Prevw>미리보기</Prevw>
+                  </div>
+                </Td>
+                <ButtonTd>
+                  <ViewButton onClick={goContent}>보기</ViewButton>
+                </ButtonTd>
+              </Tr>
+            ))}
 
-                    </tbody>
-                </Table>
-            </RoundBox>
-            <RoundBottom>
-                <Paging>
-                <A href= "#">이전</A>
-                <A href= "#">1</A>
-                <A href= "#">2</A>
-                <A href= "#">3</A>
-                <A href= "#">4</A>
-                <A href= "#">다음</A>
-                </Paging>
-            </RoundBottom>
-        </div>
-    )
+          </tbody>
+        </Table>
+      </RoundBox>
+      <RoundBottom>
+        <Paging>
+          <A href="#">이전</A>
+          <A href="#">1</A>
+          <A href="#">2</A>
+          <A href="#">3</A>
+          <A href="#">4</A>
+          <A href="#">다음</A>
+        </Paging>
+      </RoundBottom>
+    </div>
+  )
 }
 
 const RoundInfo = styled.p`
