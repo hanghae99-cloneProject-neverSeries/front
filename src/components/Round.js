@@ -6,22 +6,35 @@ import { actionCreators as productActions } from "../redux/modules/product";
 
 
 const Round = (props) => {
+  const dispatch = useDispatch();
 
   // 리덕스 데이터 가지고 오기
   const novel_detail = useSelector((state) => state.product.detail);
 
+  const productId = novel_detail?.product?.id
+  const title = novel_detail?.product?.title
+  const Rounds = novel_detail?.product?.Rounds?.map((object) => object.round)
+  const buyproduct = novel_detail?.buyproduct.map(object => object.round);
+
   //회차 리스트 뿌려 줄 것 
   const Round = ["1화", "2화", "3화", "4화", "5화", "6화", "7화", "8화", "9화", "10화", "11화", "12화", "13화", "14화", "15화", "16화", "17화", "18화", "19화", "20화", "21화", "22화", "23화", "24화", "25화", "26화", "27화", "28화", "29화", "30화"];
-
+  console.log(Rounds);
+  console.log(Round);
   // 보기를 누르면 페이지 이동
   const hisotry = useHistory();
   const goContent = () => {
     hisotry.push("/content")
   }
 
+  const goBuy = (productId, round) => {
+    console.log('productId', productId)
+    console.log('round', round)
+    dispatch(productActions.buyProductFB(productId, round));
+  }
+
   return (
     <div>
-      <RoundInfo> 총 106{ }화</RoundInfo>
+      <RoundInfo> 총 {Rounds?.length}화</RoundInfo>
       <RoundHeader>
         <Button>최신순</Button>
         <Button>1화부터</Button>
@@ -29,13 +42,13 @@ const Round = (props) => {
       <RoundBox>
         <Table border="1" summary="소설 회차 데이터 리스트">
           <tbody>
-            {Round.map((round, index) => (
+            {Rounds?.map((round, index) => (
               <Tr>
                 <Th></Th>
                 <Td>
                   <div>
-                    <span> {novel_detail?.title}
-                      <strong> {round}</strong>
+                    <span> {title}
+                      <strong> {round}화</strong>
                     </span>
                     <Date>(2021.10.10){ }</Date>
                     <NEW>New</NEW>
@@ -47,7 +60,11 @@ const Round = (props) => {
                   </div>
                 </Td>
                 <ButtonTd>
-                  <ViewButton onClick={goContent}>보기</ViewButton>
+                  {buyproduct.includes(round) ? (
+                    <ViewButton onClick={goContent}>보기</ViewButton>
+                  ) : (
+                    <ViewButton onClick={() => goBuy(productId, round)}>구매</ViewButton>
+                  )}
                 </ButtonTd>
               </Tr>
             ))}
