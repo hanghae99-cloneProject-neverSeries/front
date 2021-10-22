@@ -81,6 +81,23 @@ const postLogInCheck = () => {
     };
 };
 
+const addMuffin = (muffin) => {
+    return function (dispatch, getState, { history }) {
+        instance
+            .post("/muffin", {
+                muffin,
+            })
+            .then((res) => {
+                window.alert("머핀이 충전되었습니다");
+                history.replace("/");
+            })
+            .catch((err) => {
+                window.alert(err.response.data.msg);
+                history.replace("/");
+            });
+    };
+};
+
 // ! reducers
 export default handleActions(
     {
@@ -110,6 +127,7 @@ const actionCreators = {
     postSignup,
     postLogInCheck,
     postLogOut,
+    addMuffin,
 };
 
 export { actionCreators };
