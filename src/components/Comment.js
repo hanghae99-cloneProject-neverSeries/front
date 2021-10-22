@@ -2,52 +2,46 @@ import { useState, useRef } from 'react'
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import * as commentAtions from "../redux/modules/comment"
+import { actionCreators as actionComments } from '../redux/modules/comment';
 
 const Comment = (props) => {
   const dispatch = useDispatch();
-  const isLogin = useSelector((store) => store.user.is_login);
-  // const productId = props.match.params.productId
-  // let product = useSelector(store => store.product.detail)
-  // console.log('articleInfo', product)
 
-  // // 댓글 등록할 것 긁어오기
-  // const commentRef = useRef('');
-  // const commentList = [1, 2, 3];
+  const isLogin = useSelector((store) => store.user.is_login);
+  const novel_detail = useSelector((state) => state.product.detail);
+
+  const reviews = novel_detail?.reviews;
+
+  const [review, setReview] = useState("");
+
+
 
   // 댓글 등록 
-  // const addComment = () => {
-  //   const content = commentRef.current.value
-  //   dispatch(
-  //     actionComments.addCommentFB({
-  //       productId: Number(productId),
-  //       content: content,
-  //     })
-  //   )asdfasdfasd
-  // }
+  const addComment = () => {
+    const productId = props?.match?.params?.productId
 
-
+    dispatch(
+      actionComments.addCommentFB(productId, review)
+    )
+  }
 
   return (
     isLogin ? (
       <div>
-        <P>댓글 321{ }</P>
+        <P>댓글 {reviews?.length}</P>
         <Wrap>
-
           <div>
-            <Input placeholder="스포성 댓글이나 악플은 삭제될 수 있습니다." rows="5" cols="90" />
+            <Input placeholder="스포성 댓글이나 악플은 삭제될 수 있습니다."
+              rows="5" cols="90" value={review} onChange={(e) => { setReview(e.target.value) }} />
           </div>
-          <Upload>
-            <button >등록</button>
+          <Upload >
+            <button onClick={addComment}>등록</button>
           </Upload>
         </Wrap>
       </div>
-
-
-
     ) : (
       <NOtLoginWrap>
-        <p>댓글 321{ }</p>
+        <p>댓글 {reviews?.length}</p>
         <NotLogin >
           <NotLoginInput placeholder="댓글을 작성하려면 로그인 해주세요" onClick={() => { alert("네이버 로그인 하신 후 이용해 주시기 바랍니다.") }} />
         </NotLogin>
