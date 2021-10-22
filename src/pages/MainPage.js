@@ -1,6 +1,5 @@
 // * import Basic
 import React from "react";
-import Slider from "react-slick";
 
 import { FiberManualRecord } from "@material-ui/icons";
 import { ArrowBackIosRounded } from "@material-ui/icons";
@@ -29,7 +28,7 @@ const MainPage = (props) => {
         <React.Fragment>
             <Grid width={"1000px"} fd={"column"} padding={"15px 0px 25px 0px"}>
                 <Grid height={"100%"} width={"100%"}>
-                    <Grid>
+                    {/* <Grid>
                         <ArrowBackIosRounded
                             style={{
                                 color: "#b9b9ba",
@@ -37,7 +36,7 @@ const MainPage = (props) => {
                                 background: "#fff",
                             }}
                         />
-                    </Grid>
+                    </Grid> */}
                     <Grid
                         width="900px"
                         jc={"space-between"}
@@ -205,7 +204,7 @@ const MainPage = (props) => {
                                 );
                             })}
                     </Grid>
-                    <Grid>
+                    {/* <Grid>
                         <ArrowForwardIosRounded
                             style={{
                                 color: "#b9b9ba",
@@ -213,10 +212,10 @@ const MainPage = (props) => {
                                 background: "#fff",
                             }}
                         />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
 
-                <Grid>
+                {/* <Grid>
                     <FiberManualRecord
                         style={{
                             color: "#1b8ffc",
@@ -238,7 +237,7 @@ const MainPage = (props) => {
                             background: "#fff",
                         }}
                     />
-                </Grid>
+                </Grid> */}
             </Grid>
         </React.Fragment>
     );

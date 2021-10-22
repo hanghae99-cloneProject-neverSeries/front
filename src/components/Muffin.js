@@ -35,7 +35,7 @@ const Muffin = (props) => {
                     <div style={{ marginTop: "13px" }}>
                         <AddImage></AddImage>
                         <Text>
-                            <stron>최대 100개</stron>보너스 쿠키 받기
+                            <stron>최대 100개</stron>보너스 머핀 받기
                         </Text>
                     </div>
                 </Info>
@@ -94,7 +94,7 @@ const LoginButtion = styled.button`
 
 const LoginMuffin = styled.div`
     width: 173px;
-    height: 175px;
+    height: 190px;
     border: solid 1px #dfdfdf;
     text-align: center;
     border-radius: 2px;

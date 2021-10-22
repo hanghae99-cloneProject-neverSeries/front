@@ -89,7 +89,7 @@ const addMuffin = (muffin) => {
             })
             .then((res) => {
                 window.alert("머핀이 충전되었습니다");
-                history.replace("/");
+                window.location.reload();
             })
             .catch((err) => {
                 window.alert(err.response.data.msg);

@@ -21,6 +21,7 @@ const Comment = () => {
     const addComment = (productId, review) => {
         console.log("aaaaaaaaaaaaaaaaaaaaaa", productId);
         dispatch(actionComments.addCommentFB(productId, review));
+        window.location.reload();
     };
 
     const commentInputToggle = (isLogin) => {
@@ -48,7 +49,11 @@ const Comment = () => {
                     height={"30px"}
                     bgColor={"#03c75a"}
                     others={"border-radius:5px"}
-                    _onClick={() => addComment(productId, review)}
+                    _onClick={() => {
+                        review.length > 0
+                            ? addComment(productId, review)
+                            : window.alert("내용을 입력해주세요!");
+                    }}
                 >
                     등록
                 </Button>
@@ -72,19 +77,29 @@ const Comment = () => {
     };
     return (
         <div>
-            {commentInputToggle(isLogin)}
+            <div style={{ marginBottom: "30px" }}>
+                {commentInputToggle(isLogin)}
+            </div>
             <div>
                 {reviews?.map((data, index) => (
-                    <div key={index}>
-                        <Grid width={"780px"} bg={"red"}>
-                            <Grid>
-                                <Text>{data.nickname}</Text>
-                            </Grid>
-                            <Grid>
-                                <Text>{data.review}</Text>
-                            </Grid>
+                    <Grid
+                        key={index}
+                        fd={"column"}
+                        width={"780px;"}
+                        height={"50px"}
+                        ai={"start"}
+                        padding={"16px 0px"}
+                        others={"border-bottom:1px solid lightgray;"}
+                    >
+                        <Grid margin={"0px 0px 10px 0px"}>
+                            <Text bold={"700"} color={"gray"}>
+                                {data.nickname}
+                            </Text>
                         </Grid>
-                    </div>
+                        <Grid>
+                            <Text fontSize={"16px"}>{data.review}</Text>
+                        </Grid>
+                    </Grid>
                 ))}
             </div>
         </div>

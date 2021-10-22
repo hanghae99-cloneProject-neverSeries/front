@@ -39,7 +39,8 @@ const buyProductFB = (productId, round) => {
             .put(`/buy`, payload)
             .then((res) => {
                 dispatch(buyProducts(res.data));
-                console.log("구매 미들웨어", res.data);
+                window.location.reload();
+                window.alert("구매되었습니다!");
             })
             .catch((err) => {
                 console.log(err.response);

@@ -31,7 +31,6 @@ const Round = (props) => {
             hisotry.push("/login");
         } else {
             dispatch(productActions.buyProductFB(productId, round));
-            hisotry.push("/");
         }
     };
 
@@ -104,7 +103,7 @@ const Round = (props) => {
                                     bgColor={"#fff"}
                                     width={"80px"}
                                     height={"25px"}
-                                    others={"border: 1px solid gray;"}
+                                    others={"outline: 1px solid lightgray;"}
                                     _onClick={goContent}
                                 >
                                     <Text
