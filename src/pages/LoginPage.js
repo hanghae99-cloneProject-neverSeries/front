@@ -9,6 +9,7 @@ import { Text, Grid, Image, Input, Button } from "../elements/index";
 
 const LoginPage = ({ history }) => {
     const isLogin = useSelector((store) => store.user.is_login);
+
     const dispatch = useDispatch();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");

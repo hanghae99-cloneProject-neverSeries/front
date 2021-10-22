@@ -1,6 +1,6 @@
 // * import Basic
 import React from "react";
-import styled from "styled-components";
+import Slider from "react-slick";
 
 import { FiberManualRecord } from "@material-ui/icons";
 import { ArrowBackIosRounded } from "@material-ui/icons";
@@ -93,7 +93,7 @@ const MainPage = (props) => {
                                                                         "text-align:center;margin-bottom:-3px;"
                                                                     }
                                                                 >
-                                                                    25화
+                                                                    10화
                                                                 </Text>
                                                                 <Text
                                                                     color={
@@ -154,7 +154,37 @@ const MainPage = (props) => {
                                                                     "13px"
                                                                 }
                                                             >
-                                                                ⭐️⭐️⭐️⭐️⭐️{" "}
+                                                                {Number(
+                                                                    novel.star
+                                                                ) < 3 && "⭐️"}
+                                                                {Number(
+                                                                    novel.star
+                                                                ) >= 3 &&
+                                                                    Number(
+                                                                        novel.star
+                                                                    ) < 5 &&
+                                                                    "⭐️⭐️"}
+                                                                {Number(
+                                                                    novel.star
+                                                                ) >= 5 &&
+                                                                    Number(
+                                                                        novel.star
+                                                                    ) < 7 &&
+                                                                    "⭐️⭐️⭐️"}
+                                                                {Number(
+                                                                    novel.star
+                                                                ) >= 7 &&
+                                                                    Number(
+                                                                        novel.star
+                                                                    ) < 9 &&
+                                                                    "⭐️⭐️⭐️⭐️"}
+                                                                {Number(
+                                                                    novel.star
+                                                                ) >= 9 &&
+                                                                    Number(
+                                                                        novel.star
+                                                                    ) < 11 &&
+                                                                    "⭐️⭐️⭐️⭐️⭐️"}
                                                                 <span
                                                                     style={{
                                                                         fontSize:
@@ -163,7 +193,7 @@ const MainPage = (props) => {
                                                                             "700",
                                                                     }}
                                                                 >
-                                                                    8.7
+                                                                    {novel.star}
                                                                 </span>
                                                             </Text>
                                                         </Grid>
@@ -175,7 +205,7 @@ const MainPage = (props) => {
                                 );
                             })}
                     </Grid>
-                    <Grid controller>
+                    <Grid>
                         <ArrowForwardIosRounded
                             style={{
                                 color: "#b9b9ba",

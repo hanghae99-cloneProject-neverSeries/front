@@ -1,37 +1,35 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { DetailNav, NovelInfo, Round, Comment } from "../components";
 import { actionCreators as productCreators } from "../redux/modules/product";
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
 
 const Detail = (props) => {
-  const dispatch = useDispatch();
-  const productId = props?.match?.params?.productId;
-  const novel_detail = useSelector((state) => state.product.detail);
+    const dispatch = useDispatch();
+    const productId = props?.match?.params?.productId;
+    const novel_detail = useSelector((state) => state.product.detail);
 
-  console.log('novel_detail', novel_detail);
+    console.log("novel_detail", novel_detail);
 
-  useEffect(() => {
-    console.log('productId', productId)
-    dispatch(productCreators.getProductsFB(productId));
-  }, []);
+    useEffect(() => {
+        console.log("productId", productId);
+        dispatch(productCreators.getProductsFB(productId));
+    }, []);
 
-
-  return (
-    <div>
-      <Wrap>
-        <DetailNav />
-        <Contents>
-          <NovelInfo />
-          <Add></Add>
-          <Round />
-          <Comment />
-        </Contents>
-      </Wrap>
-    </div>
-  );
+    return (
+        <div>
+            <Wrap>
+                <DetailNav />
+                <Contents>
+                    <NovelInfo />
+                    <Add></Add>
+                    <Round />
+                    <Comment />
+                </Contents>
+            </Wrap>
+        </div>
+    );
 };
 const Wrap = styled.div`
     display: flex;
